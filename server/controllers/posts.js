@@ -1,11 +1,11 @@
 // handlers for the route - all logic
 import PostMessage from '../models/postMessage.js';
 
-const getPosts = async (req, res) => {
+export const getPosts = async (req, res) => {
   try {
     // res.send('This works!');
     const postMessages = await PostMessage.find();
-    console.log('post messages:', postMessgaes);
+    console.log('post messages:', postMessages);
 
     res.status(200).json(postMessages);
   } catch(error){
@@ -13,7 +13,7 @@ const getPosts = async (req, res) => {
   }
 };
 
-const createPost = async(req, res) => {
+export const createPost = async(req, res) => {
   // res.send('Post creation');
   const post = req.body;
   const newPost = new PostMessage(post);
@@ -25,4 +25,3 @@ const createPost = async(req, res) => {
   }
 };
 
-export { getPosts, createPost };
