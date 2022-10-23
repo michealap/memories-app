@@ -9,8 +9,9 @@ MERN Full-stack responsive social media application with email and Google Authen
 ## Features
 
 ## Tools
-> Express
-> Cors
-> Bodyparser
-> process.env
-> Redux
+>> Express
+>>Cors
+>> Bodyparser
+>> process.env
+>> Redux
+>> React 18.2
