@@ -23,13 +23,13 @@ const Form = () => {
     e.preventDefault();
     dispatch(createPost(postData));
   }
-  
-  const clear = () => {
 
+  const clear = () => {
+    // clears form text fields
   }
 
   return (
-    <Paper className={classes.fileInputpaper}>
+    <Paper className={classes.paper}>
       <form autoComplete='off' noValidate
       className={`${classes.root} ${classes.form}`}
       onSubmit={handleSubmit}>
@@ -74,7 +74,7 @@ const Form = () => {
         />
        </div>
        <Button className={classes.buttonSubmit} variant='contained' color='primary' size='large' type='submit' fullWidth>Submit</Button>
-       <Button variant='contained' color='secondary' size='small' onClick={clear} fullWidth>Clear</Button>
+       <Button variant='contained' color='info' size='small' onClick={clear} fullWidth>Clear</Button>
       </form>
     </Paper>
   )

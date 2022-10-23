@@ -10,8 +10,12 @@ MERN Full-stack responsive social media application with email and Google Authen
 
 ## Tools
 >> Express
->>Cors
+>> Cors
 >> Bodyparser
 >> process.env
 >> Redux
 >> React 18.2
+
+## Project Setup
+
+Run `npm i` && `npm start` for both client and server side to launch app

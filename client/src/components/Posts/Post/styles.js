@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
   media: {
-    height: 120,
+    height: 80,
     paddingTop: '50%',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
@@ -15,7 +15,7 @@ export default makeStyles({
   },
   card: {
     display: 'flex',
-    marginTop: '10px',
+    marginTop: '5px',
     flexDirection: 'column',
     justifyContent: 'space-between',
     borderRadius: '15px',

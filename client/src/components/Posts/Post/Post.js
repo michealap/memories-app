@@ -24,16 +24,16 @@ const Post = ({ post }) => {
         <Button size='small' style={{color:'white'}} onClick={()=> {}}>
           <MoreHorizIcon fontSize='medium' />
         </Button>
+      </div>
         <div className={classes.details}>
 
         <Typography variant='body2' color='textSecondary'>{post.tags.map((tag) => `#${tag} `)}</Typography>
         </div>
         <CardContent>
         <Typography
-        className={classes.title} variant='h5' gutterBottom>{post.message}</Typography>
+        className={classes.title} variant='h6' gutterBottom>{post.message}</Typography>
 
         </CardContent>
-      </div>
         <CardActions>
         <Button size='small' style={{color:'primary'}} onClick={()=> {}}>
           <ThumbUpAltIcon fontSize='small' />
