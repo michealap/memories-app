@@ -4,10 +4,10 @@ export default makeStyles((theme) => ({
   mainContainer: {
     display: 'flex',
     alignItems: 'center',
-    height: '100%',
+    height: 500,
+    width: 450,
   },
   smMargin: {
     margin: theme.spacing(1),
   },
- 
 }));

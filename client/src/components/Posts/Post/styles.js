@@ -22,5 +22,8 @@ export default makeStyles({
   title: {
     padding: '0 16px',
   },
-  
+  // TODO resize image to fit
+  post: {
+    objectFit: 'fill',
+  }
 });

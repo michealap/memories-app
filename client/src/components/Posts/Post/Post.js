@@ -13,20 +13,23 @@ const Post = ({ post }) => {
   
   return (
     <>
+    <div>
       <img
+        sx={{width: 1/4}}
         src={`${post.selectedFile}`}
         srcSet={`${post.selectedFile}`}
         
         alt={post.title}
         loading="lazy"
       />
+      </div>
       <div className={classes.overlay}>
        <IconButton
             style={{ color: 'white' }}
             aria-label={`like ${post.title}`}
+            onClick={() => {}}
           >
-            <ThumbUpAltIcon fontSize='small' />
-              
+            <ThumbUpAltIcon fontSize='small' /> 
             {post.likeCount}
           </IconButton>
           </div>
@@ -34,9 +37,9 @@ const Post = ({ post }) => {
            <IconButton
             style={{ color: 'white' }}
             aria-label={`more ${post.title}`}
+            onClick={() => {}}
           >
            <MoreHorizIcon fontSize='medium' />
-            
           </IconButton>
         </div>
       <ImageListItemBar position="bottom" title={`${post.tags.map((tag) => `#${tag} `)}  ${moment(post.createdAt).fromNow()} `}
@@ -47,6 +50,7 @@ const Post = ({ post }) => {
           <IconButton
             style={{ color: 'white' }}
             aria-label={`delete ${post.title}`}
+            onClick={() => {}}
           >
             <DeleteIcon fontSize='small' />
             
