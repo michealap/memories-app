@@ -8,7 +8,11 @@ export default makeStyles(()=> ({
     zIndex: 5,
   },
   container: {
-    margin: '10%'
+    margin: '15%',
+    zIndex: 200,
+  },
+  logo: {
+    fontSize: '60px', 
+    marginLeft: '20px'
   }
-
 }));
