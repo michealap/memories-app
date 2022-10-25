@@ -17,20 +17,18 @@ const App = () => {
   }, [dispatch])
 
   return (
-   <Container maxwidth='lg'>
+   <Container className={classes.album} maxwidth='xlg'>
     <AppBar className={classes.appBar} position='static' color='inherit'>
       <img className={classes.image} src={memories} alt="memories" height={60} width={60} />
       <Typography className={classes.heading}variant='h2' align='center'>Memories</Typography>
     </AppBar>
     <Grow in>
       <Container>
-        <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
-          <Grid item xs={12} sm={7}>
+        <Grid container alignItems="stretch" spacing={3}>
+          <Grid item xs={12} sm={12} md={6} lg={6}>
             <Posts />
           </Grid>
-        </Grid>
-        <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={12} md={4} lg={4}>
             <Form />
           </Grid>
         </Grid>
