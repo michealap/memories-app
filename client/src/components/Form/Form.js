@@ -33,7 +33,7 @@ const Form = () => {
       <form autoComplete='off' noValidate
       className={`${classes.root} ${classes.form}`}
       onSubmit={handleSubmit}>
-        <Typography variant="h6">Creating a Memory</Typography>
+        <Typography variant="h6">`Let we make a Memory`</Typography>
         <TextField name='creator' variant='outlined' 
         label='Creator'
         fullWidth
@@ -74,7 +74,7 @@ const Form = () => {
         />
        </div>
        <Button className={classes.buttonSubmit} variant='contained' color='primary' size='large' type='submit' fullWidth>Submit</Button>
-       <Button variant='contained' color='info' size='small' onClick={clear} fullWidth>Clear</Button>
+       <Button variant='contained' color='default' size='small' onClick={clear} fullWidth>Clear</Button>
       </form>
     </Paper>
   )

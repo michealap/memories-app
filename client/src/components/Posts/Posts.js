@@ -2,22 +2,23 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Post from './Post/Post';
 import useStyles from './styles';
-import { Grid, CircularProgress } from '@material-ui/core';
+import { Grid, CircularProgress, ImageList, ImageListItem } from '@material-ui/core';
 
 const Posts = () => {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
   
   return (
+    
     !posts.length ? <CircularProgress /> : (
-      <Grid className={classes.container} container alignItems='stretch' spacing={3}>
+      <ImageList rowHeight={500} className={classes.mainContainer} variant="masonry" rows={1} cols={3} gap={8}>
         {posts.map((post) => (
-          <Grid key={post._id} item xs={12} sm={6} > 
+          <ImageListItem key={post._id}  > 
             <Post post={post} />
-          </Grid>
+          </ImageListItem>
         ))}
 
-      </Grid>
+      </ImageList>
     )
   )
 }
