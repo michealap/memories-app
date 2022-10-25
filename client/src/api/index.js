@@ -9,3 +9,5 @@ export const createPost = (newPost) =>
 // dispatch using redux
 export const updatePost = (id, updatedPost) => 
   axios.patch(`${url}/${id}`, updatedPost);
+
+export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);

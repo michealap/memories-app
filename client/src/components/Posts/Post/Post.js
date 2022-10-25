@@ -1,21 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useStyles from './styles';
-import {ImageListItemBar, IconButton, Box } from '@material-ui/core';
+import { ImageListItemBar, IconButton, Box } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
+import { likePost } from '../../../actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
-  const posts = useSelector((state)=> state.posts);
   const classes = useStyles();
-  
+  const dispatch = useDispatch();
   return (
     <>
     <div>
       <img
-        sx={{width: 1/4}}
         src={`${post.selectedFile}`}
         srcSet={`${post.selectedFile}`}
         
@@ -27,7 +26,7 @@ const Post = ({ post, setCurrentId }) => {
        <IconButton
             style={{ color: 'white' }}
             aria-label={`like ${post.title}`}
-            onClick={() => {}}
+            onClick={() => {dispatch(likePost(post._id))}}
           >
             <ThumbUpAltIcon fontSize='small' /> 
             {post.likeCount}
@@ -37,7 +36,8 @@ const Post = ({ post, setCurrentId }) => {
            <IconButton
             style={{ color: 'white' }}
             aria-label={`more ${post.title}`}
-            onClick={() => setCurrentId(post._id)}
+            onClick={() => { console.log('button clicked') 
+            setCurrentId(post._id)}}
           >
            <MoreHorizIcon fontSize='medium' />
           </IconButton>
