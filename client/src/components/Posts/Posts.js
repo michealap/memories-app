@@ -4,7 +4,7 @@ import Post from './Post/Post';
 import useStyles from './styles';
 import { CircularProgress, ImageList, ImageListItem } from '@material-ui/core';
 
-const Posts = () => {
+const Posts = ({setCurrentId}) => {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
   
@@ -17,7 +17,7 @@ const Posts = () => {
       rowHeight={300}>
         {posts.map((post) => (
           <ImageListItem key={post._id} cols={post.cols || 1} rows={post.rows || 1} > 
-            <Post post={post} />
+            <Post post={post} setCurrentId={setCurrentId} />
           </ImageListItem>
         ))}
 

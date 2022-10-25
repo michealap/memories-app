@@ -7,7 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 
-const Post = ({ post }) => {
+const Post = ({ post, setCurrentId }) => {
   const posts = useSelector((state)=> state.posts);
   const classes = useStyles();
   
@@ -37,7 +37,7 @@ const Post = ({ post }) => {
            <IconButton
             style={{ color: 'white' }}
             aria-label={`more ${post.title}`}
-            onClick={() => {}}
+            onClick={() => setCurrentId(post._id)}
           >
            <MoreHorizIcon fontSize='medium' />
           </IconButton>
