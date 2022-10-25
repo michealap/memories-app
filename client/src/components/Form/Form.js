@@ -22,14 +22,18 @@ const Form = ({ currentId, setCurrentId }) => {
   }, [post])
 
   const dispatch = useDispatch();
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     // once user submits send over a post request with all the data user entered on form
     e.preventDefault();
 
     if(!currentId) {
-      dispatch(updatePost(currentId, postData));
-    } else {
       dispatch(createPost(postData));
+      clear();
+    }
+    // TODO populate form with existing post details
+    if(currentId) {
+      dispatch(updatePost(currentId, postData));
+      clear();
     }
   }
 
@@ -62,7 +66,7 @@ const Form = ({ currentId, setCurrentId }) => {
         }
         />
         <TextField name='creator' variant='outlined' 
-        label='<Message>'
+        label='Message'
         fullWidth
         value={postData.message}
         onChange={(e) => 

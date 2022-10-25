@@ -6,7 +6,7 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
-import { likePost } from '../../../actions/posts';
+import { likePost, deletePost } from '../../../actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
@@ -36,8 +36,7 @@ const Post = ({ post, setCurrentId }) => {
            <IconButton
             style={{ color: 'white' }}
             aria-label={`more ${post.title}`}
-            onClick={() => { console.log('button clicked') 
-            setCurrentId(post._id)}}
+            onClick={() => setCurrentId(post._id)}
           >
            <MoreHorizIcon fontSize='medium' />
           </IconButton>
@@ -50,7 +49,7 @@ const Post = ({ post, setCurrentId }) => {
           <IconButton
             style={{ color: 'white' }}
             aria-label={`delete ${post.title}`}
-            onClick={() => {}}
+            onClick={() => {dispatch(deletePost(post._id))}}
           >
             <DeleteIcon fontSize='small' />
             

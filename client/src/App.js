@@ -3,25 +3,23 @@ import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
 
 import { Container, Grow, Grid } from '@material-ui/core';
-import memories from './images/memories.jpg';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import useStyles from './styles';
 
 const App = () => {
-  const [currentId, setCurrentId] = useState(null);
+  const [currentId, setCurrentId] = useState(0);
   const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch])
+  }, [currentId, dispatch])
 
   return (
+    <>
+    <div style={{ fontSize: '60px', marginLeft: '20px'}}>memories</div>
    <Container maxwidth='xlg'>
-      {/* <Typography className={classes.image}>memories</Typography> */}
-      <img className={classes.image} src={memories} alt="memories" height={100} width={100} />
-    
     <Grow in>
       <Container className={classes.container}>
         <Grid container spacing={3}>
@@ -35,6 +33,7 @@ const App = () => {
       </Container>
     </Grow>
    </Container>
+   </>
   );
 }
 
