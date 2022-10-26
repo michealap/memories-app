@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { AUTH } from '../constants/actionTypes';
+import { AUTH } from '../../constants/actionTypes';
 import { useHistory } from 'react-router-dom';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -38,7 +38,7 @@ const Auth = () => {
       // redirect to home page once logged in
       history.push('/');
     } catch {
-      console.log(error)
+      console.log(res.error)
     }
   }
 
