@@ -2,28 +2,39 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../../constants/actionTypes';
 import { useHistory } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
+import { signin, signup } from '../../actions/auth';
+
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Icon from './Icon';
 import Input from './Input';
-import { GoogleLogin } from 'react-google-login';
 import useStyles from './styles';
+
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
 
 const Auth = () => {
   const GOOGLE_ID = process.env.GOOGLE_ID;
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
+
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const [formData, setFormData] = useState(initialState);
   
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
-  const handleChange = () => {
-
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
   }
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(isSignup) {
+      dispatch(signup(formData, history))
+    } else {
+      dispatch(signin(formData, history))
+    }
   }
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
@@ -76,7 +87,7 @@ const Auth = () => {
             onFailure={googleFailure}
             cookiePolicy='single_host_origin'
             />
-          <Grid containe justify='flex-end'>
+          <Grid container justifyContent='flex-end'>
             <Grid item>
               <Button onClick={switchMode}>
                 { isSignup ? 'Already have an account? Sign in': 'Dont have an account? Sign Up'}
