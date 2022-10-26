@@ -21,8 +21,9 @@ export default function NavBar() {
   }
   useEffect(()=> {
     const token = user?.token;
+
     // TODO - JWT 
-    setUser(JSON.parse.localStorage.getItem('profile'));
+    setUser(JSON.parse(localStorage.getItem('profile')));
 
   }, [location]);
   
