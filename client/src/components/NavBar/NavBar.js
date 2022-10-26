@@ -1,11 +1,19 @@
-import React from 'react'
+import React,  { useState, useEffect } from 'react'
 import useStyles from './styles';
 import { Link } from 'react-router-dom';
 import { Toolbar, Avatar, Typography, Button } from '@material-ui/core';
 
 export default function NavBar() {
   const classes = useStyles();
-  const user = null;
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  useEffect(()=> {
+    const token = user?.token;
+    // JWT 
+    setUser(JSON.parse.localStorage.getItem('profile'));
+
+  }, [])
+  console.log(user);
   return (
     <div>
       <Link to="/" className={classes.logo}>memories</Link>

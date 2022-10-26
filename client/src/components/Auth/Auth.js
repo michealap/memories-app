@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AUTH } from '../constants/actionTypes';
+import { useHistory } from 'react-router-dom';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Icon from './Icon';
@@ -8,6 +11,8 @@ import useStyles from './styles';
 
 const Auth = () => {
   const GOOGLE_ID = process.env.GOOGLE_ID;
+  const dispatch = useDispatch();
+  const history = useHistory();
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
@@ -26,7 +31,15 @@ const Auth = () => {
   }
 
   const googleSuccess = async (res) => {
-    console.log(res);
+    const result = res?.profileObj; //undefined
+    const token = res?.tokenId;
+    try {
+      dispatch({ type: AUTH, data: { result, token }});
+      // redirect to home page once logged in
+      history.push('/');
+    } catch {
+      console.log(error)
+    }
   }
 
   const googleFailure = () => {
