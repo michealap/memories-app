@@ -1,9 +1,11 @@
 import * as api from '../api';
 import { AUTH } from '../constants/actionTypes';
-
+/** Redux workflow - once all inputs on form are filled in and submitted, we want to dispatch an action eg.signin with arguments formData and history found in `actions` folder. This action makes another call to api and makes a post request to check db and return. Once we have the data, dispatch data to the reducer  */
 export const signin = (formData, history) => async (dispatch) => {
   try {
     // log in user
+    const { data } = await api.signin;
+    dispatch({ type: AUTH, data });
     history.push('/');
   } catch(error) {
     console.log(error);
@@ -13,6 +15,8 @@ export const signin = (formData, history) => async (dispatch) => {
 export const signup = (formData, history) => async(dispatch) => {
   try {
     // sign up user
+    const { data } = await api.signup;
+    dispatch({ type: AUTH, data });
     history.push('/');
   } catch(error) {
     console.log(error);
