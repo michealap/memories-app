@@ -2,19 +2,18 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../../constants/actionTypes';
 import { useHistory } from 'react-router-dom';
-import { GoogleLogin } from 'react-google-login';
 import { signin, signup } from '../../actions/auth';
+import { GoogleLogin } from '@react-oauth/google';
+
 
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Icon from './Icon';
 import Input from './Input';
 import useStyles from './styles';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
 
 const Auth = () => {
-  const GOOGLE_ID = process.env.GOOGLE_ID;
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
@@ -38,11 +37,12 @@ const Auth = () => {
   }
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassword(false);
+    setShowPassword(false);
   }
 
   const googleSuccess = async (res) => {
     const result = res?.profileObj; //undefined
+    console.log(result);
     const token = res?.tokenId;
     try {
       dispatch({ type: AUTH, data: { result, token }});
@@ -78,13 +78,9 @@ const Auth = () => {
           <Button type='submit' fullWidth variant='contained' color='primary' className={classes.submit}>
             { isSignup ? 'Sign Up': 'Sign In'}
           </Button>
-            <GoogleLogin clientId={GOOGLE_ID} render={(renderProps)=> (
-              <Button className={classes.googleButton} variant='contained' color='primary' fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} >
-                Google Sign In
-              </Button>
-            )}
+            <GoogleLogin 
             onSuccess={googleSuccess}
-            onFailure={googleFailure}
+            onError={googleFailure}
             cookiePolicy='single_host_origin'
             />
           <Grid container justifyContent='flex-end'>

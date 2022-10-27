@@ -14,6 +14,8 @@ export default function NavBar() {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
+  console.log(user);
+
   const logout = () => {
     dispatch({ type: LOGOUT });
     history.push('/');
@@ -21,10 +23,9 @@ export default function NavBar() {
   }
   useEffect(()=> {
     const token = user?.token;
-
+    console.log(token);
     // TODO - JWT 
     setUser(JSON.parse(localStorage.getItem('profile')));
-
   }, [location]);
   
   return (
