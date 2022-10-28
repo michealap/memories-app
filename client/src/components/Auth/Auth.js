@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { AUTH } from '../../constants/actionTypes';
 import { useHistory } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth';
+import jwt_decode from 'jwt-decode';
 import { GoogleLogin } from '@react-oauth/google';
 
 
@@ -41,11 +42,20 @@ const Auth = () => {
   }
 
   const googleSuccess = async (res) => {
-    const result = res?.profileObj; //undefined
-    console.log(result);
-    const token = res?.tokenId;
+    
+    const decoded = jwt_decode(res.credential);
+    const { given_name, family_name, email, picture, sub } = decoded;
+
+    const userInfo = { 
+      _id: sub,
+      userName: given_name,
+      lastName: family_name,
+      email: email,
+      image: picture
+    }
+    
     try {
-      dispatch({ type: AUTH, data: { result, token }});
+      dispatch({ type: AUTH, data: userInfo });
       // redirect to home page once logged in
       history.push('/');
     } catch {
