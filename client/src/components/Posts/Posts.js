@@ -5,12 +5,12 @@ import useStyles from './styles';
 import { CircularProgress, ImageList, ImageListItem } from '@material-ui/core';
 
 const Posts = ({ setCurrentId }) => {
-  const posts = useSelector((state) => state.posts);
+  const { posts } = useSelector((state) => state.posts);
   const classes = useStyles();
   
   return (
     
-    !posts.length ? <CircularProgress /> : (
+    !posts?.length ? <CircularProgress /> : (
       <ImageList className={classes.list} sx={{ width: 'auto', height: 'auto' }}
       variant="masonry"
       cols={3}

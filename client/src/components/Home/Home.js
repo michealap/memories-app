@@ -47,6 +47,7 @@ const Home = () => {
 
 
   return (
+    <Grow in>
       <Container maxWidth='xl' className={classes.container}>
         <Grid container spacing={3} className={classes.gridContainer}>
           <Grid item xs={10} sm={10} md={7} lg={6}>
@@ -83,6 +84,7 @@ const Home = () => {
           </Grid>
         </Grid>
       </Container>
+      </Grow>
   )
 }
 
