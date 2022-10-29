@@ -12,9 +12,9 @@ const App = () => {
   return (
     <BrowserRouter>
     <GoogleOAuthProvider clientId='257770897933-59hdspr2tkh80i499a77tkmm0qn5rjf1.apps.googleusercontent.com'>
-      <NavBar />
       <Camera />
       <Container maxwidth='xl'>
+      <NavBar />
         <Switch>
           <Route path='/' exact component={()=> <Redirect to='/posts' />} />
           <Route path='/posts' exact component={Home} />

@@ -1,14 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme)=> ({
-  image: {
-    marginTop: '-5%',
-    marginLeft: '-5%',
-    position: 'fixed',
-    zIndex: 5,
-  },
   container: {
-    margin: '15%',
+    marginLeft: '8%',
+    marginTop: '5%',
     zIndex: 200,
   },
   appBarSearch: {

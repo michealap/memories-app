@@ -29,23 +29,29 @@ const Home = () => {
     dispatch(getPosts());
   }, [currentId, dispatch])
 
+  const searchPost = () => {
+    if(search.trim()) {
+      // dispatch - fetch search post
+    } else {
+      history.push('/');
+    }
+  }
   const handleKeyPress = (e) => {
     if(e.keyCode === 13) {
-      // search post
-      console.log('pressend');
+      searchPost();
     }
   }
   const handleAdd = (tag) => setTags([...tags, tag])
   const handleDelete = (tagToDelete) => setTags(tags.filter((tag) => tag !== tagToDelete));
-  
+
+
   return (
-    <Grow in>
       <Container maxWidth='xl' className={classes.container}>
         <Grid container spacing={3} className={classes.gridContainer}>
-          <Grid item xs={12} sm={6} md={9} lg={6}>
+          <Grid item xs={10} sm={10} md={7} lg={6}>
             <Posts setCurrentId={setCurrentId} />
           </Grid>
-          <Grid item xs={10} sm={6} md={4} lg={4}>
+          <Grid item xs={10} sm={10} md={4} lg={4}>
             <AppBar className={classes.appBarSearch} position='static' color='inherit'>
               <TextField 
               name='search'
@@ -65,6 +71,9 @@ const Home = () => {
               variant='outlined'
 
               />
+              <Button onClick={searchPost} className={classes.searchButton} variant='contained' color='primary'>
+                Search
+              </Button>
             </AppBar>
             <Form curentId={currentId} setCurrentId={setCurrentId} />
             <Paper className={classes.pagination} elevation={6}>
@@ -73,7 +82,6 @@ const Home = () => {
           </Grid>
         </Grid>
       </Container>
-    </Grow>
   )
 }
 
