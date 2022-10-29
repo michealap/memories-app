@@ -23,10 +23,21 @@ const Home = () => {
   const page = query.get('page') || 1;
   const searchQuery = query.get('searchQuery');
   const [search, setSearch]= useState('');
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     dispatch(getPosts());
   }, [currentId, dispatch])
+
+  const handleKeyPress = (e) => {
+    if(e.keyCode === 13) {
+      // search post
+      console.log('pressend');
+    }
+  }
+  const handleAdd = (tag) => setTags([...tags, tag])
+  const handleDelete = (tagToDelete) => setTags(tags.filter((tag) => tag !== tagToDelete));
+  
   return (
     <Grow in>
       <Container maxWidth='xl' className={classes.container}>
@@ -40,9 +51,19 @@ const Home = () => {
               name='search'
               variant='outlined'
               label='Search Memories'
+              onKeyPress={handleKeyPress}
               fullWidth
               value={search}
               onChange={(e)=> setSearch(e.target.value)}
+              />
+              <ChipInput 
+              style={{ margin: '10px 0'}}
+              value={tags}
+              onAdd={handleAdd}
+              onDelete={handleDelete}
+              label='Search Tags'
+              variant='outlined'
+
               />
             </AppBar>
             <Form curentId={currentId} setCurrentId={setCurrentId} />
