@@ -10,4 +10,7 @@ export default makeStyles((theme) => ({
   smMargin: {
     margin: theme.spacing(1),
   },
+  ul: {
+    justifyContent: 'space-around'
+  }
 }));

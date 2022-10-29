@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Container } from '@material-ui/core';
 import NavBar from './components/NavBar/NavBar';
@@ -14,9 +14,11 @@ const App = () => {
     <GoogleOAuthProvider clientId='257770897933-59hdspr2tkh80i499a77tkmm0qn5rjf1.apps.googleusercontent.com'>
       <NavBar />
       <Camera />
-      <Container maxwidth='xlg'>
+      <Container maxwidth='xl'>
         <Switch>
-          <Route path='/' exact component={Home} />
+          <Route path='/' exact component={()=> <Redirect to='/posts' />} />
+          <Route path='/posts' exact component={Home} />
+          <Route path='/posts/search' exact component={Home} />
           <Route path='/auth' exact component={Auth} />
         </Switch>
       </Container>
