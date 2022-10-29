@@ -53,6 +53,7 @@ const Auth = () => {
       email: email,
       image: picture
     }
+
     
     try {
       dispatch({ type: AUTH, data: userInfo });
