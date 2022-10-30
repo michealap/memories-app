@@ -3,7 +3,7 @@
 ![Memories](./client/public/memories-app-demo.png)
 
 ## Description 
-MERN Full-stack responsive social media application with email and Google Identity Services, pagination, search and filtering capabilities, comments. 
+MERN Full-stack responsive social media application with Google Identity Services, pagination, search and filtering capabilities, comments. 
 ![Auth](./client/public/register.png)
 ![Auth](./client/public/sigin.png)
 
