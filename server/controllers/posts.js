@@ -43,7 +43,6 @@ export const getPost = async (req, res) => {
 }
 
 export const createPost = async(req, res) => {
-  // res.send('Post creation');
   const { title, message, selectedFile, creator, tags } = req.body;
   const newPost = new PostMessage({ title, message, selectedFile, creator, tags });
   try {

@@ -23,49 +23,50 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState(initialState);
   
-  const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
+  const handleShowPassword = () => setShowPassword(!showPassword);
 
-  const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value});
+  const switchMode = () => {
+    setFormData(initialState);
+    setIsSignup((prevIsSignup) => !prevIsSignup);
+    setShowPassword(false);
   }
   const handleSubmit = (e) => {
     e.preventDefault();
     if(isSignup) {
       dispatch(signup(formData, history))
     } else {
-      dispatch(signin(formData, history))
+      try {
+        dispatch(signin(formData, history))
+      }catch(error) {
+        console.log(error);
+      }
     }
   }
-  const switchMode = () => {
-    setIsSignup((prevIsSignup) => !prevIsSignup);
-    setShowPassword(false);
-  }
-
+  
   const googleSuccess = async (res) => {
-    
     const decoded = jwt_decode(res.credential);
+    const token = decoded?.sub;
     const { given_name, family_name, email, picture, sub } = decoded;
-
-    const userInfo = { 
+    const result = { 
       _id: sub,
-      userName: given_name,
+      name: given_name,
       lastName: family_name,
       email: email,
       image: picture
     }
-
     
     try {
-      dispatch({ type: AUTH, data: userInfo });
-      // redirect to home page once logged in
+      dispatch({ type: AUTH, data: { result, token } });
       history.push('/');
     } catch {
       console.log(res.error)
     }
   }
-
-  const googleFailure = () => {
-    console.log('Google Sign In was unsuccessful. Try again later')
+  
+  const googleFailure = () => console.log('Google Sign In was unsuccessful. Try again later');
+  
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
   }
   return (
     <Container component='main' maxWidth='xs'>
@@ -78,12 +79,12 @@ const Auth = () => {
           <Grid container spacing={2}>
             { isSignup && (
               <>
-                <Input name='firstName' label='First Name' handleChange={handleChange} half />
+                <Input name='firstName' label='First Name' handleChange={handleChange} half autoFocus />
                 <Input name='lastName' label='Last Name' handleChange={handleChange} half />
               </>
             )}
             <Input type='email' name='email' label='Email Address' handleChange={handleChange} />
-            <Input type={showPassword ? 'text' : 'password'} name='password' label='Password' handleShowPassword={handleShowPassword}  />
+            <Input type={showPassword ? 'text' : 'password'} name='password' label='Password' handleShowPassword={handleShowPassword} handleChange={handleChange}  />
             { isSignup && <Input type='password' name='confirmPassword' label='Repeat Password' handleChange={handleChange} />}
           </Grid>
           <Button type='submit' fullWidth variant='contained' color='primary' className={classes.submit}>
