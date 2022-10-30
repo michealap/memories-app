@@ -27,4 +27,4 @@ const Paginate = ({page}) => {
   )
 }
 
-export default Paginate
+export default Paginate;
