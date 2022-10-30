@@ -35,11 +35,7 @@ const Auth = () => {
     if(isSignup) {
       dispatch(signup(formData, history))
     } else {
-      try {
-        dispatch(signin(formData, history))
-      }catch(error) {
-        console.log(error);
-      }
+      dispatch(signin(formData, history))
     }
   }
   

@@ -16,22 +16,22 @@ const NavBar = () => {
 
   const logout = () => {
     dispatch({ type: LOGOUT });
-    history.push('/');
     setUser(null);
+    history.push('/auth');
   }
   useEffect(()=> {
-    // const token = user?.token;
-    // if(token) {
-    //   if (token.exp * 1000 < new Date().getTime()) logout();
-    // }
+    const token = user?.token;
+    if(token) {
+      if (token.exp * 1000 < new Date().getTime()) logout();
+    }
     setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [location]);
+  }, [ location]);
   
   return (
     <div className={classes.top}>
       <Link to="/" className={classes.logo}>memories</Link>
       <Toolbar className={classes.toolbar}>
-        {user ? (
+        {user?.result ? (
           <div className={classes.profile}> 
             <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.image}>{user?.result.name.charAt(0)}</Avatar>
             <Typography className={classes.userName} variant='h6'>{user?.result.name}

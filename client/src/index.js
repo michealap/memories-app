@@ -11,6 +11,7 @@ const store = configureStore({
   reducer: reducers,
   middleware: [...getDefaultMiddleware(thunk)]
 });
+
 const root = ReactDOMClient.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
